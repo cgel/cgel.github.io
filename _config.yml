@@ -7,7 +7,7 @@ relative_permalinks: false
 # Setup
 title:               CGel Blog
 tagline:             AI and other things
-baseurl: "http://cgel.github.io"
+baseurl:             http://cgel.github.io
 paginate:            1
 baseurl:             ""
 
