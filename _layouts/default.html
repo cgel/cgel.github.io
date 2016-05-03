@@ -17,6 +17,12 @@
         {{ content }}
       </main>
 
+{% if site.twitter_username %}
+    <a href="https://twitter.com/{{ site.twitter_username }}">
+      <i class="fa fa-twitter fa-4x" aria-hidden="true"></i>
+    </a>
+{% endif %}
+
       <footer class="footer">
         <small>
           &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.

@@ -13,7 +13,10 @@ sass:
 # About/contact
 author:
   name:              Carles Gelada
-  email:             carlesgelada@gmail.com
+  email:             carlesgelada@hotmail.com
+
+twitter_username: carlesgelada
+github_username: cgel 
 
 gems:
   - jekyll-sitemap
