@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Is deep learning the future of UAV vision
+title: Is deep learning the future of UAV vision?
 ---
 
 **This essay was first posted on <http://www.diydrones.com>. It was inspired by other recent posts about the efforts to bring obstacle avoidance to the PX4 drone platform and the paper [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316) by NVIDIA.**
