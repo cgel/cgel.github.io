@@ -9,10 +9,10 @@ excerpt_separator: <!--more-->
 [This post](http://diydrones.com/profiles/blogs/px4-update-obstacle-avoidance-talk-at-dronecode-unconference) by Chris Anderson details the current efforts to develop a obstacle avoidance system for drones. They are based on Simultaneous Location And Mapping (building a map of the world in real time) and Path Planning -- For the sake of conciseness I will call this approach SLAMAP.
 
  I want to offer some thoughts on why this might not be a very promising approach, and propose an alternative that i think is more interesting.
+<!--more-->
 
 One of the major shortfalls of SLAMAP is its inability of handling dynamic objects (objects that move)
 ![octomap]({{ site.url }}/assets/octomap.png)
-<!--more-->
 For example, the block on the middle of this 3D map could either be a still box, or a vehicle moving at full speed towards the drone. Just take a moment to think how fundamental the perception of motion is to your ability of moving around or driving. Think about how would it be to have no information about the velocity of the objects around you.
 
 Another problem is the binarity of the information stored in 3d maps — The cell is either empty or solid, seen or unseen.
