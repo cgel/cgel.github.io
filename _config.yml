@@ -1,14 +1,12 @@
 # Setup
-title:               CGel Blog
-tagline:             AI and other things
+title:            cgel
+tagline:          A blog about AI
+description:      'A blog about AI'
+baseurl:          /
+
 paginate:            1
 
-# Assets
-#
-# We specify the directory for Jekyll so we can use @imports.
-sass:
-  sass_dir:          _sass
-  style:            :compressed
+markdown:    kramdown
 
 # About/contact
 author:
@@ -16,9 +14,11 @@ author:
   email:             carlesgelada@hotmail.com
 
 twitter_username: carlesgelada
-github_username: cgel 
+github_username: cgel
 
 gems:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-paginate
+
+highlighter:      pygments
