@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to solve intelligence
+title: Solve intelligence in 5 easy steps
 excerpt_separator: <!--more-->
 autoNumber: '"all"'
 ---
@@ -13,8 +13,6 @@ In this article I present several research ideas that are both, fundamental to i
 
 <!--more-->
 
-## 1 Introduction
-
 
 Neural networks have shown an incredible ability in approximation and generalization. Yet, it is not wildly accepted that they are - at least on their own - enough to result in true AI. As [[1]] puts it:
 
@@ -25,7 +23,7 @@ Here, I argue that for all tasks relevant to AI, any apparent shortcomings neura
 I also explore how _"general purpose neural networks with few initial constraints"_ could learn in a similar manner to what the consensus in early developmental psychology and linguistics expect. How, for example, core concepts of objects and language might appear early on.
 
 
-## 2 The right problem
+## 1 The right problem
 Whether RL is the way to achieve intelligence is a subject of debate. Its detractors have exposed many shortcomings. I believe, tough, that RL is the only setting general enough to achieve intelligence and that these shortcomings should inspire instead of disparage research.
 
 One shortfall of RL is the difficulty to do knowledge transfer. DQN [[5]] has to train a new networck for each game. And although several approaches have been proposed to solve this problem [[7]], [[8]], [[9]]  they are ultimately unsatisfactory because they require a teacher that already knows how to play. There is, though, a canonical way to do knowledge transfer: string the individual tasks together. Something similar to this was done by [[7]] to be used as a baseline with some promising results - though not much information was provided. An analogy with supervised learning would be: learning a separate classifier for each class vs learning a single multi-class classifier. When multiple tasks have commonalities, sharing representations should significantly increase the learning speed . And the only constrain is that the states spaces of each task should not intersect - and in atari2600 they don't.
@@ -45,7 +43,7 @@ There would be two main versions of this method, the one where state $$ \hat{s} 
 Note that the agent could not learn good exploration policies without having previously explored. Therefore, in the beginning the agent would still depend on a simple exploration technique like $$ \epsilon$$-greedy. Another important thing to note is that since the policies now would depend on the rewards received, the behavior under no rewards would be unpredictable. This might seem highly constraining for real world applications but i will later propose a method to remove this constraint.
 
 
-## 3 Imagination
+## 2 Imagination
 The ability to “imagine” what would happen if an action is taken  seems a fundamental property of intelligence. Considering different situations, and reasoning about them is a useful cognitive tool. Giving neural networks these tools is therefore a interesting research problem.
 
 Here, I am only going to discuss a constrained form of imagination, model based planning.
@@ -59,15 +57,15 @@ Approximating $$ T(s,a) $$ could be inefficient - like in the case where the sta
 It is also easy to envision a multi step version where the transition function function is trained use "synthetic" hidden states.
 
 
-## 4 End-to-end learning
+## 3 End-to-end learning
 A clear trend in the field of AI is the tendency towards end-to-end. Problems are so difficult that a solution can only be learned. [[2]] took it a step further by not only learning the problems, but by learning the learning algorithm. I think that this is a very promising direction.
 
-### 4.1 Credit assignment
+### 3.1 Credit assignment
 Credit assignment is one of the fundamental problems of RL, and is one of the biggest sources of the variance of the updates. Could use the intelligence of the agent to do explicit credit assignment?
 
 When a human go player studies a game he is looking for the good and the bad moves and using this information to play better. Instead, in [[18]] the updates to all actions depend on the final reward. Learning to do credit assignment would likely increase the performance or at least increase the learning speed.
 
-### 4.2 Updates
+### 3.2 Updates
 The canonical RL algorithms sample from the stationary distribution of states. But since this is intractable in the real world alternative update methods have been proposed. [[5]] used a replay memory that contained the last 1 million transitions and sampled the updates uniformly from it. [[17]] also used a 1 million sample replay memory and improved on it by biasing the sampling towards transitions with higher TD error. One problem to this approach is that many "useless" transitions are maintained in memory. Another, is that the policy for any state that has not been seen in the last 1 million transitions will degrade very quickly.
 
 I believe that a much better update process can be learned. The update network would decide which transitions to store - potentially only storing inner states - and how to sample them.
@@ -75,7 +73,7 @@ I believe that a much better update process can be learned. The update network w
 The network could also use information on the stability of the representations, knowing how the current update would change the policy on previously sampled transitions. It could then find an alternative update that improves the policy on this state but does not change the it in the previously seen ones.
 
 
-## 5 Learning hierarchies
+## 4 Learning hierarchies
 Many real world tasks can be easily broken down into subtasks and organized in hierarchies. In these cases, hierarchical RL can alleviate conceptual and temporal abstraction difficulties and help generalization. It can also ease the credit assignment problem, speeding up learning.
 
 Consider the case where a part of the brain (a module) is responsible for motor control and its reward is the "top level" reward. Here, learning is limited by a possibly very sparse reward. In addition, other independent parts of the brain can affect the updates to this module - because they affect the reward.
@@ -95,7 +93,7 @@ Another advantage of hierarchies is that the representations could be much small
 And since hierarchical RL is ultimately a collection of RL problems it can be easily combined with the methods previously described. This is especially interesting in the case of planning over different temporal and conceptual representations.
 
 
-## 6 The ethics signal
+## 5 The ethics signal
 If the previous propositions are successful we might end up with a truly intelligent agent. It might be able to solve a wide spectrum of tasks, read and understand task descriptions, use imagination to learn faster and take better actions, and use hierarchies to find better temporal and conceptual representations. Yet, in the real world, where there is no reward signal, its usage would sill be highly limited. Not only it could not learn anything new without rewards. It could not even perform a task that it has already learned - because, as i mentioned earlier, the policy depends on the received rewards.
 
 There is also the control problem. Any desirable reward signal for the real world cannot be dependent on simple goals that can be achieved at any cost. Instead, it must be an ethic reward signal (an ethics signal) that relies on high level concepts like language, physics and psychology among others.
