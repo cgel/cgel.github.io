@@ -15,9 +15,8 @@ title: Home
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
     {{ post.excerpt}}
-    {% if post.excerpt != post.content %}
-      <a style='color: #1c3866; font-size: 1.2rem' href="{{ post.url }}">Read more</a>
-    {% endif %}
+     
+    <a style='color: #1c3866; font-size: 1.2rem' href="{{ post.url }}">Read more</a>
   </div >
   {% endfor %}
 </div>
