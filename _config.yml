@@ -1,12 +1,12 @@
 # Setup
-title:           Cognitive Dissonance 
+title:           Cognitive Dissonance
 tagline:          A blog about AI
 description:      'A blog about AI'
 baseurl:          /
 
 paginate:            1
 
-markdown:    kramdown
+markdown:   redcarpet
 
 # About/contact
 author:
