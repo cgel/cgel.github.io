@@ -10,9 +10,7 @@ autoNumber: '"all"'
 </p>
 
 In this article I present several research ideas that are both, fundamental to intelligence and tractable. I also tackle the control problem, and present a solution to introduce ethics into a intelligent RL agent.
-
 <!--more-->
-
 
 Neural networks have shown an incredible ability in approximation and generalization. Yet, it is not wildly accepted that they are - at least on their own - enough to result in true AI. As [[1]] puts it:
 
