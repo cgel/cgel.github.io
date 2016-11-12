@@ -2,7 +2,6 @@
 layout: post
 title: Solve intelligence in 5 easy steps
 excerpt_separator: <!--more-->
-autoNumber: '"all"'
 ---
 
 <p class="message">
