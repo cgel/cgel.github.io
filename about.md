@@ -2,6 +2,9 @@
 layout: page
 title: About
 ---
+
+![Carles Gelada]({{ site.url }}/assets/me.jpg){:style="float: right;margin-right: 15px;margin-left: 15px;margin-bottom: 7px;"}
+
 My name is Carles Gelada, I am 19 years old and I live in Girona, Spain.
 
 I am passionate about AI and I am working tirelessly to solve it. For the last few years I have been
