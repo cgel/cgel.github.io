@@ -6,7 +6,7 @@ baseurl:          /
 
 paginate:            1
 
-markdown:    kramdown
+markdown:    redcarpet
 
 # About/contact
 author:
