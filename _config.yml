@@ -6,8 +6,6 @@ baseurl:          /
 
 paginate:            1
 
-markdown:    redcarpet
-
 # About/contact
 author:
   name:              Carles Gelada
