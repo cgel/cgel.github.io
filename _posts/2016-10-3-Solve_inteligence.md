@@ -2,12 +2,8 @@
 layout: post
 title: Solve intelligence in 5 easy steps
 excerpt_separator: <!--more-->
-autoNumber: '"all"'
 ---
-
-<p class="message">
-  This is still work in progress. Some parts are not finished and many references are missing. If you have any feedback please send it to {{ site.author.email }}
-</p>
+This is still work in progress. Some parts are not finished and many references are missing. If you have any feedback please send it to {{ site.author.email }}
 
 In this article I present several research ideas that are both, fundamental to intelligence and tractable. I also tackle the control problem, and present a solution to introduce ethics into a intelligent RL agent. 
 <!--more-->
