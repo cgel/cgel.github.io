@@ -37,7 +37,7 @@ I believe that by learning to act under information extended space and a lots of
 
 There would be two main versions of this method, the one where state $$ \hat{s} $$ depends on the episode, and the one where it depends an all previous episodes. Since the second method would have a much bigger state space it might be more challenging to train, but it would also be more powerful, and it clearly is also more resemblant to human intelligence.
 
-Note that the agent could not learn good exploration policies without having previously explored. Therefore, in the beginning the agent would still depend on a simple exploration technique like $$ \epsilon$$-greedy. Another important thing to note is that since the policies now would depend on the rewards received, the behavior under no rewards would be unpredictable. This might seem highly constraining for real world applications but i will later propose a method to remove this constraint.
+Note that the agent could not learn good exploration policies without having previously explored. Therefore, in the beginning the agent would still depend on a simple exploration technique like $$ \epsilon$$-greedy. Another important thing to note is that since the policies now would depend on the rewards received, the behavior under no rewards would be unpredictable. This might seem highly constraining for real world applications but I will later propose a method to remove this constraint.
 
 
 ## 2 Imagination
@@ -91,11 +91,11 @@ And since hierarchical RL is ultimately a collection of RL problems it can be ea
 
 
 ## 5 The ethics signal
-If the previous propositions are successful we might end up with a truly intelligent agent. It might be able to solve a wide spectrum of tasks, read and understand task descriptions, use imagination to learn faster and take better actions, and use hierarchies to find better temporal and conceptual representations. Yet, in the real world, where there is no reward signal, its usage would sill be highly limited. Not only it could not learn anything new without rewards. It could not even perform a task that it has already learned - because, as i mentioned earlier, the policy depends on the received rewards.
+If the previous propositions are successful we might end up with a truly intelligent agent. It might be able to solve a wide spectrum of tasks, read and understand task descriptions, use imagination to learn faster and take better actions, and use hierarchies to find better temporal and conceptual representations. Yet, in the real world, where there is no reward signal, its usage would sill be highly limited. Not only it could not learn anything new without rewards. It could not even perform a task that it has already learned - because, as I mentioned earlier, the policy depends on the received rewards.
 
 There is also the control problem. Any desirable reward signal for the real world cannot be dependent on simple goals that can be achieved at any cost. Instead, it must be an ethic reward signal (an ethics signal) that relies on high level concepts like language, physics and psychology among others.
 
-The idea i am proposing is simple: use the learned representations to predict an ethics signal in a supervised fashion and then use this signal as the RL reward signal that the agent tries to maximize.
+The idea I am proposing is simple: use the learned representations to predict an ethics signal in a supervised fashion and then use this signal as the RL reward signal that the agent tries to maximize.
 
 To do this we would need to extend the neural network with a scalar output and define a large set of “ethics augmented tasks” – normal RL tasks with an ethics signal target. Defining such tasks would be a big challenge on it own, since  we need to make sure their ethics signal is one that we want to be maximized.
 

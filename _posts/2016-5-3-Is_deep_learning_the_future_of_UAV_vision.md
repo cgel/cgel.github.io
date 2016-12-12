@@ -8,7 +8,7 @@ excerpt_separator: <!--more-->
 
 [This post](http://diydrones.com/profiles/blogs/px4-update-obstacle-avoidance-talk-at-dronecode-unconference) by Chris Anderson details the current efforts to develop a obstacle avoidance system for drones. They are based on Simultaneous Location And Mapping (building a map of the world in real time) and Path Planning -- For the sake of conciseness I will call this approach SLAMAP.
 
- I want to offer some thoughts on why this might not be a very promising approach, and propose an alternative that i think is more interesting.
+ I want to offer some thoughts on why this might not be a very promising approach, and propose an alternative that I think is more interesting.
 <!--more-->
 
 One of the major shortfalls of SLAMAP is its inability of handling dynamic objects (objects that move)
@@ -28,12 +28,13 @@ Another difficulty with SLAMAP is that the utilization of this framework to prov
 
 And finally there is a very empirical argument against SLAMAP. After decades of research it seems to have failed at finding applications outside academia. Most industrial applications in which SLAMAP is used, are simple and highly controlled — nothing like drone flying.
 
-In short, the shortfalls of SLAMAP are:
-Does not support dynamic objects
-Does not handle uncertainty
-Does not have semantic understanding of the world
-Is difficult to get the desired behaviours
-Empirically, it has been around for quite a while and hasn’t been very successful.
+In short, the shortfalls of SLAMAP are:    
+
+- Does not support dynamic objects.
+- Does not handle uncertainty.
+- Does not have semantic understanding of the world.
+- Is difficult to get the desired behaviours.
+- Empirically, it has been around for quite a while and hasn’t been very successful.
 
 
 So, is there another option? Yes there is, and is called Deep Learning.
@@ -52,9 +53,9 @@ And it has also been applied to broader tasks outside classification. One of the
 
 And of course Alphago, a go player that recently beat the go master Lee Sedol 4-1. A feat that was thought by many to be decades away.
 
-Very recently NVIDIA published a paper of an end to end steering system for a car. It showed a simple deep net — so simple that i was amazed — with only 70 hours of driving experience, running on a mobile GPU at 30 fps perform very well at driving on all kinds terrains and weathers.
+Very recently NVIDIA published a paper of an end to end steering system for a car. It showed a simple deep net — so simple that I was amazed — with only 70 hours of driving experience, running on a mobile GPU at 30 fps perform very well at driving on all kinds terrains and weathers.
 
-But aside from off the empirical success of deep learning, the reason i believe it is more promising than SLAMAP is that it has the capacity to understand all the things SLAMAP cannot. All of the inherent limitations of SLAMAP i previously mentioned don’t exist in a deep net.
+But aside from off the empirical success of deep learning, the reason I believe it is more promising than SLAMAP is that it has the capacity to understand all the things SLAMAP cannot. All of the inherent limitations of SLAMAP I previously mentioned don’t exist in a deep net.
 
 A deep net can learn to understand a dynamic world – tell the difference between a truck moving at 100 mph and at rest. And they can also learn meaningful semantics like: that snow powder is nothing to worry about, but that water is dangerous. And it can then learn how to use  this understanding
 
