@@ -4,6 +4,8 @@ tagline:          A blog about AI
 description:      'A blog about AI'
 baseurl:          /
 
+# blue #1c3866
+
 paginate:            1
 
 # About/contact
