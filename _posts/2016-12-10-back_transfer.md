@@ -1,6 +1,6 @@
 ---
 layout: post
-title: On positive back transfer
+title: Positive back transfer
 excerpt_separator: <!--more-->
 autoNumber: '"all"'
 ---
