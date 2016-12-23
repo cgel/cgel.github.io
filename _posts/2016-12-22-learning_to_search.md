@@ -2,6 +2,7 @@
 layout: post
 title: Learning to Search
 excerpt_separator: <!--more-->
+future: true
 autoNumber: '"all"  '
 ---
 Undoubtedly, one of the greatest achievements of the field of AI has been AlphaGo [[1]]. Similarly to how people play the game, AlphaGo used a value network to evaluate the game position instead of relying on large numbers of rollouts. Since there is a lot of structure in Go, it is possible to learn patterns. This patterns can then be exploited to make more efficient algorithms.
