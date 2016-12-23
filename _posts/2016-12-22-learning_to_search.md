@@ -90,7 +90,7 @@ In a game like Go that has approximately 300 steps, this could mean a reduction 
 
 The basic idea I am introducing here is that better bounds, conditional on the state, can be learned. By learning to accurately predict the uncertainty, we could use optimism in the face of uncertainty to search over the actions that truly might to lead to high rewards, and ignore the ones that wont. If it is possible to accurately estimate the value of a state why not its uncertainty? Further, the value estimates and bound estimates could share features. There would barely be any extra computation requirements, and the efficiency of MCTS would be greatly improved.
 
-To put it in mathematical terms, we want to learn new bounds $$C_{n,N}(s,a)$$ for which $$(8)$$ still holds (so that the convergence guaranties of MCB still apply). The tightest the bounds we find, the quicker the search will converge.
+To put it in mathematical terms, we want to learn new bounds $$C_{n,N}(s,a)$$ for which $$(8)$$ still holds (so that the convergence guaranties of UCT still apply). The tightest the bounds we find, the quicker the search will converge.
 
 The simplest and most obvious way to do it is by estimating the variance of $$Q_1(s,a)$$. <sup>2</sup>
 
