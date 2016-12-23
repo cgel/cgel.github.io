@@ -5,6 +5,34 @@ excerpt_separator: <!--more-->
 future: true
 autoNumber: '"all"  '
 ---
+{% assign ref_names = "" | split:"|"  %}
+{% assign ref_urls = "" | split:"|"  %}
+<!-- 1 -->
+{% assign ref_names = ref_names | push:
+  "Mastering the game of Go with deep neural networks and tree search"%}
+{% assign ref_urls = ref_urls | push:
+  "http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html" %}
+<!-- 2 -->
+{% assign ref_names = ref_names | push:
+  "Bandit based monte-carlo planning" %}
+{% assign ref_urls = ref_urls | push:
+  "http://ggp.stanford.edu/readings/uct.pdf" %}
+<!-- 3 -->
+{% assign ref_names = ref_names | push:
+  "Finite-time Analysis of the Multiarmed Bandit Problem" %}
+{% assign ref_urls = ref_urls | push:
+  "https://homes.di.unimi.it/~cesabian/Pubblicazioni/ml-02.pdf" %}
+<!-- 4 -->
+{% assign ref_names = ref_names | push:
+  "The grand challenge of computer Go: Monte Carlo tree search and extensions" %}
+{% assign ref_urls = ref_urls | push:
+  "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Publications_files/grand-challenge.pdf" %}
+
+{% for i in (1..ref_names.size) %}
+  {%assign j = i | minus: 1 %}
+  [{{i}}]: {{ ref_urls[j] }} "{{ref_names[j] }}"
+{% endfor %}
+
 Undoubtedly, one of the greatest achievements of the field of AI has been AlphaGo [[1]]. Similarly to how people play the game, AlphaGo used a value network to evaluate the game position instead of relying on large numbers of rollouts. Since there is a lot of structure in Go, it is possible to learn patterns. This patterns can then be exploited to make more efficient algorithms.
 
 Yet, there is still a stark difference between how AlphaGo and humans play: The way they search. People use their intelligence and experience to decide what combinations are worth evaluating, AlphaGo, instead, relies on a hard-coded <sup>1</sup> search strategy.
@@ -115,33 +143,6 @@ In particular, the frontier that I find the most interesting is that of training
 
 
 ### References
-{% assign ref_names = "" | split:"|"  %}
-{% assign ref_urls = "" | split:"|"  %}
-<!-- 1 -->
-{% assign ref_names = ref_names | push:
-  "Mastering the game of Go with deep neural networks and tree search"%}
-{% assign ref_urls = ref_urls | push:
-  "http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html" %}
-<!-- 2 -->
-{% assign ref_names = ref_names | push:
-  "Bandit based monte-carlo planning" %}
-{% assign ref_urls = ref_urls | push:
-  "http://ggp.stanford.edu/readings/uct.pdf" %}
-<!-- 3 -->
-{% assign ref_names = ref_names | push:
-  "Finite-time Analysis of the Multiarmed Bandit Problem" %}
-{% assign ref_urls = ref_urls | push:
-  "https://homes.di.unimi.it/~cesabian/Pubblicazioni/ml-02.pdf" %}
-<!-- 4 -->
-{% assign ref_names = ref_names | push:
-  "The grand challenge of computer Go: Monte Carlo tree search and extensions" %}
-{% assign ref_urls = ref_urls | push:
-  "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Publications_files/grand-challenge.pdf" %}
 
 {% for i in (1..ref_names.size) %} {%assign j = i | minus: 1 %}
  {{i}}. [{{ref_names[j] }}] [{{i}}] {% endfor %}
-
-{% for i in (1..ref_names.size) %}
-  {%assign j = i | minus: 1 %}
-  [{{i}}]: {{ ref_urls[j] }} "{{ref_names[j] }}"
-{% endfor %}
