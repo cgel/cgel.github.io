@@ -37,7 +37,7 @@ Undoubtedly, one of the greatest achievements of the field of AI has been AlphaG
 
 Yet, there is still a stark difference between how AlphaGo and humans play: The way they search. People use their intelligence and experience to decide what combinations are worth evaluating, AlphaGo, instead, relies on a hard-coded <sup>1</sup> search strategy.
 
-Here I propose a new way to learn to search trees based on UCT. I also prove that the learned algorithm is consistent. (AlphaGo isn't)
+Here I propose a new way to learn to search trees based on UCT. I also prove that the learned algorithm is consistent.
 <!--more-->
 $$\newcommand{\Var}{\mathrm{Var}}$$
 $$\newcommand{\E}{\mathrm{\mathop{\mathbb{E}}}}$$
@@ -78,7 +78,7 @@ $$P(Q_{n}(s,a) \geq \mathop{\mathbb{E}}{[Q(s,a)]} + C_{n,N}(s,a)) \leq N^{-4}$$
 
 Where $$V_i(s,a)$$ is value estimate computed from a leaf state found when traversing $$(s,a)$$ the $$i$$'th time. Since we are now estimating the values of a tree, the estimates might drift. That is why [[3]] introduced the constant $$C_p \geq 1$$. They prove that if $$C_p$$ is large enough, $$Q_{N(s,a)}(s,a)$$ will converge. Similarly to UCB1, UCT solves the exploration-explotation problem for MDPs. In fact, for the general MDP we can't do much better.
 
-But sometimes this isn't enough. When the state space is too big, it is often not feasible to use UCT. It might take to long before the bounds tighten and the search can proceed efficiently. This is the reason AlphaGo uses a heuristic to drive the search, trading the consistency for better, earlier value estimates.
+But sometimes this isn't enough. When the state space is too big, it is often not feasible to use UCT. It might take to long before the bounds tighten and the search can proceed efficiently. This is the reason AlphaGo uses a heuristic to drive the search, to get better, earlier value estimates.
 
 
 ## Learning the bounds
