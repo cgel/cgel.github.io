@@ -4,18 +4,115 @@ title: Solve intelligence in 5 easy steps
 excerpt_separator: <!--more-->
 autoNumber: '"all"'
 ---
-<p class="message">
-  This is still work in progress. Some parts are not finished and many references are missing. If you have any feedback please send it to {{ site.author.email }}
-</p>
+
+{% assign ref_names = "" | split:"|"  %}
+{% assign ref_urls = "" | split:"|"  %}
+<!-- 1 -->
+{% assign ref_names = ref_names | push:
+  "Building Machines That Learn and Think Like People"%}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1604.00289" %}
+<!-- 2 -->
+{% assign ref_names = ref_names | push:
+  "Learning to learn by gradient descent by gradient descent" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1606.04474v1" %}
+<!-- 3 -->
+{% assign ref_names = ref_names | push:
+  "A Roadmap towards Machine Intelligence" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1511.08130" %}
+<!-- 4 -->
+{% assign ref_names = ref_names | push:
+  "Neural Turing Machines" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1410.5401v2" %}
+<!-- 5 -->
+{% assign ref_names = ref_names | push:
+  "Human-level control through deep reinforcement learning" %}
+{% assign ref_urls = ref_urls | push:
+  "http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html" %}
+<!-- 6 -->
+{% assign ref_names = ref_names | push:
+  "Policy Gradient Methods for Reinforcement Learning with Function Approximation" %}
+{% assign ref_urls = ref_urls | push:
+  "https://webdocs.cs.ualberta.ca/~sutton/papers/SMSM-NIPS99.pdf" %}
+<!-- 7 -->
+{% assign ref_names = ref_names | push:
+  "Policy Distillation" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1511.06295" %}
+<!-- 8 -->
+{% assign ref_names = ref_names | push:
+  "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1511.06342" %}
+<!-- 9 -->
+{% assign ref_names = ref_names | push:
+  "Deep Learning for Real-Time Atari Game Play Using Offline Monte-Carlo Tree Search Planning" %}
+{% assign ref_urls = ref_urls | push:
+  "https://papers.nips.cc/paper/5421-deep-learning-for-real-time-atari-game-play-using-offline-monte-carlo-tree-search-planning" %}
+<!-- 10 -->
+{% assign ref_names = ref_names | push:
+  "Unifying Count-Based Exploration and Intrinsic Motivation" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1606.01868" %}
+<!-- 11 -->
+{% assign ref_names = ref_names | push:
+  "Incentivizing Exploration In Reinforcement Learning With Deep Predictive Models" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1507.00814" %}
+<!-- 12 -->
+{% assign ref_names = ref_names | push:
+  "Reinforcement Learning Neural Turing Machines - Revised" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1505.00521" %}
+<!-- 13 -->
+{% assign ref_names = ref_names | push:
+  "Neural Turing Machines" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1410.5401" %}
+<!-- 14 -->
+{% assign ref_names = ref_names | push:
+  "Neural Programmer-Interpreters" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1511.06279" %}
+<!-- 15 -->
+{% assign ref_names = ref_names | push:
+  "One-shot Learning with Memory-Augmented Neural Networks" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1605.06065" %}
+<!-- 16 -->
+{% assign ref_names = ref_names | push:
+  "Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1604.06057" %}
+<!-- 17 -->
+{% assign ref_names = ref_names | push:
+  "Prioritized Experience Replay" %}
+{% assign ref_urls = ref_urls | push:
+  "https://arxiv.org/abs/1511.05952" %}
+<!-- 18 -->
+{% assign ref_names = ref_names | push:
+  "Mastering the game of Go with deep neural networks and tree search" %}
+{% assign ref_urls = ref_urls | push:
+  "http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html" %}
+
+
+
+{% for i in (1..ref_names.size) %}
+  {%assign j = i | minus: 1 %}
+  [{{i}}]: {{ ref_urls[j] }} "{{ref_names[j] }}"
+{% endfor %}
 
 In this article I present several research ideas that are both, fundamental to intelligence and tractable. I also tackle the control problem, and present a solution to introduce ethics into a intelligent RL agent.
-<!--more-->
 
 Neural networks have shown an incredible ability in approximation and generalization. Yet, it is not wildly accepted that they are - at least on their own - enough to result in true AI. As [[1]] puts it:
 
 > the claim that a mind is a collection of general purpose neural networks with few initial constraints is rather extreme in contemporary cognitive science.
 
 Here, I argue that for all tasks relevant to AI, any apparent shortcomings neural networks might have are more the result of an ill defined problem than a fundamental limitation. I believe that the way forward is to choose the right problem and make sure that the network has enough computational flexibility to develop the necessary cognitive skills.
+<!--more-->
 
 I also explore how _"general purpose neural networks with few initial constraints"_ could learn in a similar manner to what the consensus in early developmental psychology and linguistics expect. How, for example, core concepts of objects and language might appear early on.
 
@@ -103,108 +200,12 @@ Then another challenge will be to confirm that the learned ethics signal has gen
 
 Very importantly, this method does not force the agent to stop learning after it has been “set free” in the real world.  A RL algorithm can still be used to maximize the ethic signal rewards - although the updates should not change the ethics signal.
 
+<p class="message">
+  I had planned to expand some parts and improve some arguments. But since I published this article so much relevant research has been publish that I would basically need to scrap the whole thing. I will instead write posts including the new research.
+</p>
+
 ---
 
 ### References
-{% assign ref_names = "" | split:"|"  %}
-{% assign ref_urls = "" | split:"|"  %}
-<!-- 1 -->
-{% assign ref_names = ref_names | push:
-  "Building Machines That Learn and Think Like People"%}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1604.00289" %}
-<!-- 2 -->
-{% assign ref_names = ref_names | push:
-  "Learning to learn by gradient descent by gradient descent" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1606.04474v1" %}
-<!-- 3 -->
-{% assign ref_names = ref_names | push:
-  "A Roadmap towards Machine Intelligence" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1511.08130" %}
-<!-- 4 -->
-{% assign ref_names = ref_names | push:
-  "Neural Turing Machines" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1410.5401v2" %}
-<!-- 5 -->
-{% assign ref_names = ref_names | push:
-  "Human-level control through deep reinforcement learning" %}
-{% assign ref_urls = ref_urls | push:
-  "http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html" %}
-<!-- 6 -->
-{% assign ref_names = ref_names | push:
-  "Policy Gradient Methods for Reinforcement Learning with Function Approximation" %}
-{% assign ref_urls = ref_urls | push:
-  "https://webdocs.cs.ualberta.ca/~sutton/papers/SMSM-NIPS99.pdf" %}
-<!-- 7 -->
-{% assign ref_names = ref_names | push:
-  "Policy Distillation" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1511.06295" %}
-<!-- 8 -->
-{% assign ref_names = ref_names | push:
-  "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1511.06342" %}
-<!-- 9 -->
-{% assign ref_names = ref_names | push:
-  "Deep Learning for Real-Time Atari Game Play Using Offline Monte-Carlo Tree Search Planning" %}
-{% assign ref_urls = ref_urls | push:
-  "https://papers.nips.cc/paper/5421-deep-learning-for-real-time-atari-game-play-using-offline-monte-carlo-tree-search-planning" %}  
-<!-- 10 -->
-{% assign ref_names = ref_names | push:
-  "Unifying Count-Based Exploration and Intrinsic Motivation" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1606.01868" %}
-<!-- 11 -->
-{% assign ref_names = ref_names | push:
-  "Incentivizing Exploration In Reinforcement Learning With Deep Predictive Models" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1507.00814" %}
-<!-- 12 -->
-{% assign ref_names = ref_names | push:
-  "Reinforcement Learning Neural Turing Machines - Revised" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1505.00521" %}
-<!-- 13 -->
-{% assign ref_names = ref_names | push:
-  "Neural Turing Machines" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1410.5401" %}
-<!-- 14 -->
-{% assign ref_names = ref_names | push:
-  "Neural Programmer-Interpreters" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1511.06279" %}
-<!-- 15 -->
-{% assign ref_names = ref_names | push:
-  "One-shot Learning with Memory-Augmented Neural Networks" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1605.06065" %}
-<!-- 16 -->
-{% assign ref_names = ref_names | push:
-  "Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1604.06057" %}
-<!-- 17 -->
-{% assign ref_names = ref_names | push:
-  "Prioritized Experience Replay" %}
-{% assign ref_urls = ref_urls | push:
-  "https://arxiv.org/abs/1511.05952" %}
-<!-- 18 -->
-{% assign ref_names = ref_names | push:
-  "Mastering the game of Go with deep neural networks and tree search" %}
-{% assign ref_urls = ref_urls | push:
-  "http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html" %}
-
-
-
 {% for i in (1..ref_names.size) %} {%assign j = i | minus: 1 %}
  {{i}}. [{{ref_names[j] }}] [{{i}}] {% endfor %}
-
-{% for i in (1..ref_names.size) %}
-  {%assign j = i | minus: 1 %}
-  [{{i}}]: {{ ref_urls[j] }} "{{ref_names[j] }}"
-{% endfor %}
