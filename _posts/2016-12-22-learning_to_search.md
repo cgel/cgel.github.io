@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Learning to Search
+title: Learning to search
 excerpt_separator: <!--more-->
 future: true
 autoNumber: '"all"  '
