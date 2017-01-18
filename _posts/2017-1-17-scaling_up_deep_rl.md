@@ -38,6 +38,11 @@ $$ \nabla_{\theta_i} J = \sum_s d(s) \sigma^i_w(h) \sum_{a} \frac{\partial \pi(s
 
 $$ \nabla_{w} J = \sum_{i} \sum_s d(s) \sigma^i_w(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial w} Q(s,a) $$
 
+<p class="message">
+There is an error in (5). To solve it, though, I need to change quite a bit of notation. Until I do, keep in mind that the idea of the post stands regardless.
+</p>
+
+
 We know that the learning rate of $$w$$ should be smaller than that of $$\theta_i$$, but by how much? Since the activations of $$f_i$$ depend on $$\sigma^i_w$$, a learned function, the right way to balance the learning rates will be variable. Is there a principled way to find this balance, them?
 
 Lets go back and consider the problem we are trying to solve. If the update is constructed from states that underrepresent certain parts of the state-space, it might mess up the policy in those underrepresented states. Therefor, such kind of samples should have low impact on the update of $$w$$.
