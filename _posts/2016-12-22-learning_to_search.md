@@ -119,9 +119,9 @@ $$d_{n,N}(s,a) = Q_n(s,a)-\E[Q(s,a)]-C_{n,N}(s,a)$$
 
 By learning the actual confidence bound we would be learning the optimal search strategy of optimism in the face of uncertainty.
 
-But what sort of parametrization of bound can we use? It would be tempting to the form $$f_\theta(s,a) \sqrt{\frac{\ln{n}}{N}}$$, but it is not clear that this is the right form. Does the optimal bound really tighten at this rate for all states? And if we only train using $$n$$ up to a certain depth, we cannot be sure that the bound will hold after that.
+But what sort of parametrization of bound can we use? It would be tempting to use $$f_\theta(s,a) \sqrt{\frac{\ln{n}}{N}}$$, but it is not clear that this is the right form. Does the optimal bound really tighten at this rate for all states? And if we only train using $$n$$ up to a certain depth, can we be sure that the bound will hold after that?
 
-Ideally we would like to find a bound for which we can prove that if $$(11)$$ is true then this is also true.
+Ideally we would like to find a bound for which we can prove that if $$(11)$$ is true, this is also true.
 
 $$P(Q_{n+1}(s,a) \geq \mathop{\mathbb{E}}{[Q(s,a)]} + C_{n+1,N}(s,a)) \approx N^{-4}$$
 
