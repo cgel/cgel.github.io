@@ -28,27 +28,22 @@ I previously mentioned that if an agent cannot learn to act over multiple tasks 
 
 A policy could be constructed that depends on parts that are activated and deactivated depending on the sate this way.
 
-$$\pi(s,a) = g_w(\sigma^1_w(h) f^1_{\theta_1}(h),..., \sigma^k_w(h) f^k_{\theta_k}(h))$$
+$$\pi(s,a) = g_w(\sigma^1_{\omega_1}(h) f^1_{\theta_1}(h),..., \sigma^k_{\omega_k}(h) f^k_{\theta_k}(h))$$
 
-Where, for the sake of clarity, I have used $$h$$ to represent the hidden state $$ \psi_w(s) $$ and where $$\sigma^i_w(h)$$ defines how much each $$f_i$$ should be activated - and, by extension, how much it should be updated.
+Where, for the sake of clarity, I have used $$h$$ to represent the hidden state $$ \psi_w(s) $$ and where $$\sigma^i_{\omega_i}(h)$$ defines how much each $$f_i$$ should be activated - and, by extension, how much it should be updated.
 
-From here we can make an equivalent derivation from the policy gradient theorem:
+Now we can make an equivalent derivation from the policy gradient theorem:
 
-$$ \nabla_{\theta_i} J = \sum_s d(s) \sigma^i_w(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial \theta_i} Q(s,a) $$
+$$ \nabla_{\theta_i} J = \sum_s d(s) \sigma^i_{\omega_i}(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial \theta_i} Q(s,a) $$
 
-$$ \nabla_{w} J = \sum_{i} \sum_s d(s) \sigma^i_w(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial w} Q(s,a) $$
+$$ \nabla_{w} J = \sum_{i} \sum_s d(s) \sigma^i_{\omega_i}(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial f^i_{\theta_i}(h)} \frac{\partial f^i_{\theta_i}(h)}{\partial w}Q(s,a) $$
 
-<p class="message">
-There is an error in (5). To solve it, though, I need to change quite a bit of notation. Until I do, keep in mind that the idea of the post stands regardless.
-</p>
+$$ \nabla_{\omega_i} J = \sum_s d(s) \sum_{a} \frac{\partial \pi(s,a)}{\partial \omega_i} Q(s,a) $$
 
+We know that the learning rate of $$w$$ should be smaller than that of $$\theta_i$$. But by how much? Since the activations of $$f_i$$ depend on $$\sigma^i_{\omega_i}$$ - a learned function - the right way to balance the learning rates will be variable. Is there a principled way to find this balance, them?
 
-We know that the learning rate of $$w$$ should be smaller than that of $$\theta_i$$, but by how much? Since the activations of $$f_i$$ depend on $$\sigma^i_w$$, a learned function, the right way to balance the learning rates will be variable. Is there a principled way to find this balance, them?
+We could maybe make the (very reasonable) assumption that the learning rate of a policy that acts over a state-space twice as big as another policy, should be two times smaller. In our case we could keep and estimate of $$\hat{\sigma}^i_{\omega_i} = \mathrm{\mathop{\mathbb{E}}}[\sigma^i_{\omega_i}(h)]$$ and set the learning rate of $$\theta_i$$ to be the base learning rate times $$(\hat{\sigma}^i_{\omega_i})^{-1}$$.
 
-Lets go back and consider the problem we are trying to solve. If the update is constructed from states that underrepresent certain parts of the state-space, it might mess up the policy in those underrepresented states. Therefor, such kind of samples should have low impact on the update of $$w$$.
+When training in this manner, the functions $$f_i$$ that help take better actions will get activated more. It is not clear, though, that the functions that do not contribute will get deactivated. We could add a new loss that minimizes $$\hat{\sigma}^i_{\omega_i}$$, allowing the updates to $$\theta_i$$ to be bigger and, by extension, increasing learning speed.
 
-One way to look at the problem of finding the learning rate balance is to make the (very reasonable) assumption that the learning rate of a policy that acts over a state-space twice as big as another policy, should be two times smaller. In our case we could keep and estimate of $$\hat{\sigma}^i_w = \mathrm{\mathop{\mathbb{E}}}[\sigma^i_w(h)]$$ and set the learning rate of $$\theta_i$$ to be the base learning rate times $$(\hat{\sigma}^i_w)^{-1}$$.
-
-When training in this manner, the functions $$f_i$$ that help take better actions will get activated more. It is not clear, though, that the functions that do not contribute will get deactivated. We could add a new loss that minimizes $$\hat{\sigma}^i_w$$, allowing the updates to $$\theta_i$$ to be bigger and, by extension, increasing learning speed.
-
-Another desirable property of $$\sigma^i_w$$ would be temporal consistency. It seems reasonable that if a part of the network is useful at time $$t$$ it will also be helpful at time $$t+1$$. By also adding $$(\sigma^i_w(h_t)-\sigma^i_w(h_{t+1})^2$$ to the loss we could drive $$\sigma^i_w$$ in that direction.
+Another desirable property of $$\sigma^i_{\omega_i}$$ would be temporal consistency. It seems reasonable that if a part of the network is useful at time $$t$$ it will also be helpful at time $$t+1$$. By also adding $$(\sigma^i_{\omega_i}(h_t)-\sigma^i_{\omega_i}(h_{t+1})^2$$ to the loss we could drive $$\sigma^i_{\omega_i}$$ in that direction.
