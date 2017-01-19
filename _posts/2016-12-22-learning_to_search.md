@@ -104,7 +104,7 @@ There is, though, a more appealing idea. What if instead of learning a tighter u
 
 $$P(Q_{n}(s,a) \geq \mathop{\mathbb{E}}{[Q(s,a)]} + C_{n,N}(s,a)) \approx N^{-4}$$
 
-With this goal in mind, this loss naturally arises
+With this goal in mind, we can construct a loss. Estimating the bound $$(8)$$ is equivalent to finding the point where only $$N^{-4}$$ of the samples fall to the right. Mathematically, it can be constructed this way.
 
 $$L = \sum_{s,a,n,N}\E{[l_{n,N}(s,a)]]} $$
 
@@ -119,11 +119,15 @@ $$d_{n,N}(s,a) = Q_n(s,a)-\E[Q(s,a)]-C_{n,N}(s,a)$$
 
 By learning the actual confidence bound we would be learning the optimal search strategy of optimism in the face of uncertainty.
 
-It would be tempting to use a bound of the form $$f_\theta(s,a) \sqrt{\frac{\ln{n}}{N}}$$, but it is not clear that the search would converge. If we only train using $$n$$ up to $$x$$, we cannot be sure that for $$n>x$$ the bounds will hold. Ideally we would like to find a bound for which we can prove that if $$(11)$$ is true then this is also true.
+But what sort of parametrization of bound can we use? It would be tempting to the form $$f_\theta(s,a) \sqrt{\frac{\ln{n}}{N}}$$, but it is not clear that this is the right form. Does the optimal bound really tighten at this rate for all states? And if we only train using $$n$$ up to a certain depth, we cannot be sure that the bound will hold after that.
+
+Ideally we would like to find a bound for which we can prove that if $$(11)$$ is true then this is also true.
 
 $$P(Q_{n+1}(s,a) \geq \mathop{\mathbb{E}}{[Q(s,a)]} + C_{n+1,N}(s,a)) \approx N^{-4}$$
 
 What form of bound exhibits this behavior I don't know.
+
+Another option would be to directly learn the bound and pass $$n$$ and $$N$$ as inputs and make sure it generalizes up to the depth we will search during a game.
 
 ## Does it converge?
 You might be thinking that, although learning better bounds could lead to large improvements, it would break the convergence guaranties of UCT. After all, we cannot prove that bounds dependent on a function approximator will hold over all states and actions. For example, we might underestimate the variance of some actions, not exploring them as much as we should. Luckily for us, UCT already accounts for cases where the bounds don't hold. Therefore, for a large enough constant $$C_p$$, UCT with a learned bound will converge. Of course, having a large $$C_p$$ defeats the whole purpose of learning tight bounds. So it would be necessary to find the right balance.
