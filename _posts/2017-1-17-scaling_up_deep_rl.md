@@ -47,3 +47,12 @@ We could maybe make the (very reasonable) assumption that the learning rate of a
 When training in this manner, the functions $$f_i$$ that help take better actions will get activated more. It is not clear, though, that the functions that do not contribute will get deactivated. We could add a new loss that minimizes $$\hat{\sigma}^i_{\omega_i}$$, allowing the updates to $$\theta_i$$ to be bigger and, by extension, increasing learning speed.
 
 Another desirable property of $$\sigma^i_{\omega_i}$$ would be temporal consistency. It seems reasonable that if a part of the network is useful at time $$t$$ it will also be helpful at time $$t+1$$. By also adding $$(\sigma^i_{\omega_i}(h_t)-\sigma^i_{\omega_i}(h_{t+1})^2$$ to the loss we could drive $$\sigma^i_{\omega_i}$$ in that direction.
+
+## Conclusions
+Separating the network into parts that can be activated and deactivated differently is a promising approach to scaling up deep RL to the multi-task setting and to more challenging tasks. It could possibly be interpreted as specializing parts of the network and giving them different levels of plasticity.
+
+The principle can be applied to many different network architectures, from networks with different policy heads acting on different tasks, to cases where different low level perception networks are activated depending on the task and anywhere in between.
+
+---
+
+I am focused on other projects and I have very little compute power, that is why I haven't implemented the idea. If anyone is interested, though, I would be happy to help and really interested in seeing the results. It should not be hard to implement - especially in multi-task version, where you already know a good activation function.
