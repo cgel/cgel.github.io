@@ -28,25 +28,25 @@ I previously mentioned that if an agent cannot learn to act over multiple tasks 
 
 A policy could be constructed that depends on parts that are activated and deactivated depending on the sate this way.
 
-$$\pi(s,a) = g_w(\sigma^1_{\omega_1}(h) f^1_{\theta_1}(h),..., \sigma^k_{\omega_k}(h) f^k_{\theta_k}(h))$$
+$$\pi(s,a) = g_w(\sigma^1_{\omega_1}(s) f^1_{\theta_1}(h),..., \sigma^k_{\omega_k}(s) f^k_{\theta_k}(h))$$
 
-Where, for the sake of clarity, I have used $$h$$ to represent the hidden state $$ \psi_w(s) $$ and where $$\sigma^i_{\omega_i}(h)$$ defines how much each $$f_i$$ should be activated - and, by extension, how much it should be updated.
+Where, for the sake of clarity, I have used $$h$$ to represent the hidden state $$ \psi_w(s) $$ and where $$\sigma^i_{\omega_i}(s)$$ defines how much each $$f_i$$ should be activated - and, by extension, how much it should be updated.
 
 Now we can make an equivalent derivation from the policy gradient theorem:
 
-$$ \nabla_{\theta_i} J = \sum_s d(s) \sigma^i_{\omega_i}(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial \theta_i} Q(s,a) $$
+$$ \nabla_{\theta_i} J = \sum_s d(s) \sigma^i_{\omega_i}(s) \sum_{a} \frac{\partial \pi(s,a)}{\partial \theta_i} Q(s,a) $$
 
-$$ \nabla_{w} J = \sum_{i} \sum_s d(s) \sigma^i_{\omega_i}(h) \sum_{a} \frac{\partial \pi(s,a)}{\partial f^i_{\theta_i}(h)} \frac{\partial f^i_{\theta_i}(h)}{\partial w}Q(s,a) $$
+$$ \nabla_{w} J = \sum_{i} \sum_s d(s) \sigma^i_{\omega_i}(s) \sum_{a} \frac{\partial \pi(s,a)}{\partial f^i_{\theta_i}(h)} \frac{\partial f^i_{\theta_i}(h)}{\partial w}Q(s,a) $$
 
 $$ \nabla_{\omega_i} J = \sum_s d(s) \sum_{a} \frac{\partial \pi(s,a)}{\partial \omega_i} Q(s,a) $$
 
 We know that the learning rate of $$w$$ should be smaller than that of $$\theta_i$$. But by how much? Since the activations of $$f_i$$ depend on $$\sigma^i_{\omega_i}$$ - a learned function - the right way to balance the learning rates will be variable. Is there a principled way to find this balance, them?
 
-We could maybe make the (very reasonable) assumption that the learning rate of a policy that acts over a state-space twice as big as another policy, should be two times smaller. In our case we could keep and estimate of $$\hat{\sigma}^i_{\omega_i} = \mathrm{\mathop{\mathbb{E}}}[\sigma^i_{\omega_i}(h)]$$ and set the learning rate of $$\theta_i$$ to be the base learning rate times $$(\hat{\sigma}^i_{\omega_i})^{-1}$$.
+We could maybe make the (very reasonable) assumption that the learning rate of a policy that acts over a state-space twice as big as another policy, should be two times smaller. In our case we could keep and estimate of $$\hat{\sigma}^i_{\omega_i} = \mathrm{\mathop{\mathbb{E}}}[\sigma^i_{\omega_i}(s)]$$ and set the learning rate of $$\theta_i$$ to be the base learning rate times $$(\hat{\sigma}^i_{\omega_i})^{-1}$$.
 
 When training in this manner, the functions $$f_i$$ that help take better actions will get activated more. It is not clear, though, that the functions that do not contribute will get deactivated. We could add a new loss that minimizes $$\hat{\sigma}^i_{\omega_i}$$, allowing the updates to $$\theta_i$$ to be bigger and, by extension, increasing learning speed.
 
-Another desirable property of $$\sigma^i_{\omega_i}$$ would be temporal consistency. It seems reasonable that if a part of the network is useful at time $$t$$ it will also be helpful at time $$t+1$$. By also adding $$(\sigma^i_{\omega_i}(h_t)-\sigma^i_{\omega_i}(h_{t+1})^2$$ to the loss we could drive $$\sigma^i_{\omega_i}$$ in that direction.
+Another desirable property of $$\sigma^i_{\omega_i}$$ would be temporal consistency. It seems reasonable that if a part of the network is useful at time $$t$$ it will also be helpful at time $$t+1$$. By also adding $$(\sigma^i_{\omega_i}(s_t)-\sigma^i_{\omega_i}(s_{t+1})^2$$ to the loss we could drive $$\sigma^i_{\omega_i}$$ in that direction.
 
 ## Conclusions
 Separating the network into parts that can be activated and deactivated differently is a promising approach to scaling up deep RL to the multi-task setting and to more challenging tasks. It could possibly be interpreted as specializing parts of the network and giving them different levels of plasticity.
