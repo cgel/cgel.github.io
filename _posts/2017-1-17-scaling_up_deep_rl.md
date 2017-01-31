@@ -1,11 +1,13 @@
 ---
 layout: post
-title: Scaling up deep RL
+title: Variable plasticity policies
 excerpt_separator: <!--more-->
 future: true
 autoNumber: '"all"  '
 ---
 The simplest and most intuitive way to perform multi-task learning in the RL setting is to create a "supertask" by selecting a random task each time an episode begins. Unfortunately, current RL methods do not perform well in this setting, which also means that they wont be able to scale to bigger, more challenging tasks. Although sharing representations among many tasks (and training over a lot more data) should benefit generalization, doing so augments the variance of the gradients. If each one of $$k$$ tasks requires $$n$$ samples to have a good enough gradient at the current learning rate, computing a good gradient of the supertask would require $$kn$$ samples or a learning rate $$k$$ times smaller. Clearly, this does not scale.
+
+Here I propose a method to solve this challenge by giving different parts of the network different plasticity (different learning rates).
 
 <!--more-->
 
