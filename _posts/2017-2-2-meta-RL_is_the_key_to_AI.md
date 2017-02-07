@@ -6,7 +6,7 @@ future: true
 autoNumber: '"all"  '
 ---
 
-There is a long list of cognitive skills that an AI should muster to be truly intelligent: language, bayesian reasoning and inference, one-shot learning (for example when observing the dynamics of an object), logical reasoning, different types of memory, learning from imitation, learning by instructions (like a written task description or the verbal feedback provided by a teacher), etc.
+There is a long list of cognitive skills that an AI should muster to be truly intelligent: language, bayesian reasoning and inference, one-shot learning (for example when observing the dynamics of an object), logical reasoning, different types of memory, learning from imitation, learning by instructions (like a written task description or the verbal feedback provided by a teacher), transfer learning, etc.
 
 The common research approach is to select one skill that you want to imitate, simplify it to the point where you can model it mathematically and find an appropriate loss to minimize. Although the simplifications might work for simple problems, it is always easy to see how it might break down with harder tasks. I do not believe this approach will scale.
 
@@ -22,6 +22,6 @@ In the meta-RL context, the natural way to learn to perform imitation learning i
 
 Note that it is irrelevant whether the examples are provided from a first person view or from third person view. They could even be given by a radically different medium, like text or sound. We could also not feed the action sequence of the example and only feed the images. This approach is extremely flexible. More importantly, we have broadly extended the capabilities of the agent without adding any complexity to the RL algorithm, we only had to create the right task for the agent to learn.
 
-In there lies the true power of meta-RL, if the tasks are designed properly, we can teach the agents any skills. We could, for example, use this principle to force the agent to learn language by giving the agent tasks that require true language understanding. To me it seems clear that this is the way to solve AI.
+In there lies the true power of meta-RL, if the tasks are designed properly, we can teach the agents any skills. We could, for example, use this principle to force the agent to learn language by giving the agent tasks that require true language understanding. Similarly, if playing a first task gave useful information to solve a second task, a meta-RL agent would learn to use such information, thus learning to perform knowledge transfer. To me it seems clear that this is the way to solve AI.
 
 You might then ask: If we train a meta-RL agent into tasks that force it to learn all the necessary skills, will we have a truly intelligent agent? The answer is that the reinforcement agents that we have today would not be able to solve the necessary tasks. Many innovations are needed (like the ones I proposed in [here]({% post_url 2016-10-3-Solve_inteligence %}) and [here]({% post_url 2017-1-17-scaling_up_deep_rl %}) ). But once we have agents that are capable of solving those tasks the answer will be __YES__.
