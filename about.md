@@ -20,4 +20,8 @@ while I also work on the research that motivates me.
 I am now looking to join a research group where I can learn faster and where my contributions
 can be more meaningful. A place where I can find people with a common interest in solving AI.
 
-You can contact me at _{{ site.author.email}}_
+---
+
+Contact me at _{{ site.author.email}}_
+
+[Resume]( {{ site.url }}/assets/Resume.pdf)
