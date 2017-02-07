@@ -10,13 +10,17 @@ paginate:            1
 
 # About/contact
 author:
+  twitter:              Carles Gelada
   name:              Carles Gelada
   email:             carlesgelada@hotmail.com
 
+twitter:username: carlesgelada
 twitter_username: carlesgelada
+
 github_username: cgel
 
 gems:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-paginate
+  - jekyll-seo-tag
